@@ -1,4 +1,4 @@
-package frentz.daniel.model;
+package frentz.daniel.garden.model;
 
 public class Water extends GardenHardware{
     private long pressure;

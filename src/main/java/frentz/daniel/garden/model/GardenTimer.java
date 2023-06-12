@@ -1,4 +1,4 @@
-package frentz.daniel.model;
+package frentz.daniel.garden.model;
 
 
 import frentz.daniel.hardwareservice.client.model.Timer;

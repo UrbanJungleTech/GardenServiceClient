@@ -1,4 +1,4 @@
-package frentz.daniel.model;
+package frentz.daniel.garden.model;
 
 import java.util.ArrayList;
 import java.util.List;
