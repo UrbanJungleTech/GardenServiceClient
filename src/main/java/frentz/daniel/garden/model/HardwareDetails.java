@@ -5,21 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HardwareDetails {
-
-    private Map<String, List<GardenHardware>> hardware;
-
-    public HardwareDetails(){
-        this.hardware = new HashMap<>();
-    }
+public class HardwareDetails extends HashMap<String, List<GardenHardware>>{
 
     public List<GardenHardware> getHardware(String hardwareType){
-        return this.hardware.get(hardwareType);
+        return get(hardwareType);
     }
 
     public List<GardenHardware> getHardware(){
         List<GardenHardware> result = new ArrayList<>();
-        for(List<GardenHardware> hardware : this.hardware.values()){
+        for(List<GardenHardware> hardware : values()){
             result.addAll(hardware);
         }
         return result;
@@ -27,10 +21,10 @@ public class HardwareDetails {
 
     public void addHardware(GardenHardware gardenHardware){
         String hardwareType = gardenHardware.getHardwareCategory();
-        if(!this.hardware.containsKey(hardwareType)){
-            this.hardware.put(hardwareType, new ArrayList<>());
+        if(!containsKey(hardwareType)){
+            put(hardwareType, new ArrayList<>());
         }
-        this.hardware.get(hardwareType).add(gardenHardware);
+        get(hardwareType).add(gardenHardware);
     }
 
 }

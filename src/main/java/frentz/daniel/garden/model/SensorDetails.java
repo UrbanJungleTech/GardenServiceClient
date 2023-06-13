@@ -32,4 +32,8 @@ public class SensorDetails {
         }
         return result;
     }
+
+    public List<GardenSensor> getSensorsByType(String sensorType){
+        return this.gardenSensors.get(sensorType);
+    }
 }
