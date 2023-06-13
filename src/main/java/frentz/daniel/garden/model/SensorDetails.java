@@ -1,38 +1,35 @@
 package frentz.daniel.garden.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SensorDetails {
 
-    private List<GardenSensor> temperature;
-    private List<GardenSensor> moisture;
+    private Map<String, List<GardenSensor>> gardenSensors;
 
     public SensorDetails(){
-        this.temperature = new ArrayList<GardenSensor>();
-        this.moisture = new ArrayList<GardenSensor>();
-    }
-    public List<GardenSensor> getTemperature() {
-        return temperature;
+        this.gardenSensors = new HashMap<>();
     }
 
-    public void setTemperature(List<GardenSensor> temperature) {
-        this.temperature = temperature;
+    public List<GardenSensor> getSensors(String sensorType){
+        return this.gardenSensors.get(sensorType);
     }
 
-    public List<GardenSensor> getMoisture() {
-        return moisture;
+    public void addSensor(GardenSensor gardenSensor){
+        String sensorType = gardenSensor.getSensorType();
+        if(!this.gardenSensors.containsKey(sensorType)){
+            this.gardenSensors.put(sensorType, new ArrayList<>());
+        }
+        this.gardenSensors.get(sensorType).add(gardenSensor);
     }
 
-    public void setMoisture(List<GardenSensor> moisture) {
-        this.moisture = moisture;
-    }
-
-    public void addMoisture(GardenSensor sensor){
-        this.moisture.add(sensor);
-    }
-
-    public void addTemperature(GardenSensor sensor){
-        this.temperature.add(sensor);
+    public List<GardenSensor> getSensors(){
+        List<GardenSensor> result = new ArrayList<>();
+        for(List<GardenSensor> gardenSensors : this.gardenSensors.values()){
+            result.addAll(gardenSensors);
+        }
+        return result;
     }
 }

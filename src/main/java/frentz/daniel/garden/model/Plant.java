@@ -3,7 +3,7 @@ package frentz.daniel.garden.model;
 import java.time.LocalDateTime;
 
 public class Plant {
-    private long id;
+    private Long id;
     private String name;
     private String species;
     private LocalDateTime created;

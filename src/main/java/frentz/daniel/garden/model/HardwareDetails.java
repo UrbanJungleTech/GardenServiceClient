@@ -1,54 +1,36 @@
 package frentz.daniel.garden.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HardwareDetails {
-    private List<Light> lights;
 
-    public List<Light> getLights() {
-        return lights;
-    }
-
-    public void setLights(List<Light> lights) {
-        this.lights = lights;
-    }
-
-    public List<Water> getWaters() {
-        return waters;
-    }
-
-    public void setWaters(List<Water> waters) {
-        this.waters = waters;
-    }
-
-    public List<Heater> getHeaters() {
-        return heaters;
-    }
-
-    public void setHeaters(List<Heater> heaters) {
-        this.heaters = heaters;
-    }
-
-    private List<Water> waters;
-    private List<Heater> heaters;
-
+    private Map<String, List<GardenHardware>> hardware;
 
     public HardwareDetails(){
-        this.lights = new ArrayList<>();
-        this.waters = new ArrayList<>();
-        this.heaters = new ArrayList<>();
+        this.hardware = new HashMap<>();
     }
 
-    public void addLight(Light light){
-        this.lights.add(light);
+    public List<GardenHardware> getHardware(String hardwareType){
+        return this.hardware.get(hardwareType);
     }
 
-    public void addWater(Water water){
-        this.waters.add(water);
+    public List<GardenHardware> getHardware(){
+        List<GardenHardware> result = new ArrayList<>();
+        for(List<GardenHardware> hardware : this.hardware.values()){
+            result.addAll(hardware);
+        }
+        return result;
     }
 
-    public void addHeater(Heater heater){
-        this.heaters.add(heater);
+    public void addHardware(GardenHardware gardenHardware){
+        String hardwareType = gardenHardware.getHardwareCategory();
+        if(!this.hardware.containsKey(hardwareType)){
+            this.hardware.put(hardwareType, new ArrayList<>());
+        }
+        this.hardware.get(hardwareType).add(gardenHardware);
     }
+
 }
